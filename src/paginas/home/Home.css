@@ -1,0 +1,14 @@
+.titulo
+{
+    color:#05006D;
+    text-align:center;
+    font-family: Candara, sans-serif;
+}
+
+.img
+{
+    width:500px;
+    height:500px;
+    display: block;
+    margin: 0 auto;
+}
