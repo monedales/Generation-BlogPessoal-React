@@ -12,3 +12,9 @@
     display: block;
     margin: 0 auto;
 }
+
+.loginPage
+{
+    width: 100vw;
+    min-height: calc(100vh-64px);
+}
