@@ -1,0 +1,63 @@
+/*.grow {
+    flex-grow: 1,
+  }
+  menuButton: {
+    marginRight: theme.spacing(2),
+  }
+  title: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  }
+
+  },
+
+  .sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  }
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    }
+  }*/
+
+  .cursor
+  {
+    cursor: pointer;
+    color:#ebb5de;
+    font-weight: bold !important;
+  }
+
+  .text-decorator-none
+{
+    text-decoration: none;
+}
+
+.barra
+{
+  background-color: #8a638b;
+}
+
+/* paleta de cores interessantes
+#f9e1e0
+#ccb6b5
+#615a67
+#8a638b
+#ebb5de
+#df8cf3
+#582951
+#a13e3e
+#ac8975
+#855741
+#6e533e
+#f5ae90
+#f9c2aa
+#f0946e
+#ea7442
+#ffbd59
+*/
