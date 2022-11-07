@@ -3,7 +3,7 @@ import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "react-use-localstorage";
-import UsuarioLogin from "../../model/UsuarioLogin";
+import UsuarioLogin from "../../model/UserLogin";
 import { getValue } from "@mui/system";
 import { login } from "../../service/Service";
 import "./Login.css";
