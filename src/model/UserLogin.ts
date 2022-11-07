@@ -1,4 +1,4 @@
-interface UsuarioLogin
+interface UserLogin
 {
     id: number;
     nome: string;
@@ -8,4 +8,4 @@ interface UsuarioLogin
     token?: string | null;
 }
 
-export default UsuarioLogin;
+export default UserLogin;
