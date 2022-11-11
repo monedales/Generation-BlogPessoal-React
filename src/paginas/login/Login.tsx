@@ -7,6 +7,8 @@ import UsuarioLogin from "../../model/UsuarioLogin";
 import { getValue } from "@mui/system";
 import { login } from "../../service/Service";
 import "./Login.css";
+import { useDispatch } from "react-redux";
+import { addToken } from "../../store/tokens/actions";
 
 //useState gancho que deixa manipular os dados de um componente
 
@@ -25,7 +27,12 @@ function Login() {
     let history = useNavigate();
 
     // Hooks que vão manipular o nosso Local Storage para gravar o Token
-    const [token, setToken] = useLocalStorage("token");
+    // const [token, setToken] = useLocalStorage("token");
+
+    //método novo com redux
+    const dispatch = useDispatch()
+
+    const [token, setToken] = useState('');
 
     //Função que junto com a setUsuarioLogin irá atualizar o valor inicial da usuarioLogin
     //se clicar dentro em qualquer c oisa do formulario essa funçao será ativada
@@ -40,6 +47,7 @@ function Login() {
     // Hook de efeito colateral, sempre executa uma função quando o que estiver no seu Array é alterado
     useEffect(()=>{
         if (token != "") {
+            dispatch(addToken(token));
             history('/home');
         }  
     },[token])

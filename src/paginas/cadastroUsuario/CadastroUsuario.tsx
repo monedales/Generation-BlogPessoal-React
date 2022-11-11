@@ -51,7 +51,7 @@ function CadastroUsuario()
     }
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if(confirmarSenha == usuario.senha){
+        if(confirmarSenha === usuario.senha){
         cadastroUsuario(`/usuarios/cadastrar`, usuario, setUserResult)
         alert('Usuario cadastrado com sucesso')
         }else{
@@ -120,9 +120,12 @@ function CadastroUsuario()
                                         Cancelar
                                     </Button>
                                 </Link>
+                                <Link to="/home">
                                 <Button type="submit" variant="contained" color="primary"> {/*tirar o color e colocar classe pros botoes*/}
                                         Cadastrar
                                 </Button>
+                                </Link>
+                                
                             </Box>
                         </form>
                 </Box>

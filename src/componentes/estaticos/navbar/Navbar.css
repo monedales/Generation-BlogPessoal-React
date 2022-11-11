@@ -29,18 +29,19 @@
   .cursor
   {
     cursor: pointer;
-    color:#ebb5de;
+    color:#ebb5de !important;
     font-weight: bold !important;
   }
 
   .text-decorator-none
 {
     text-decoration: none;
+    /*hover: #a13e3e;*/
 }
 
 .barra
 {
-  background-color: #8a638b;
+  background-color: #8a638b !important;
 }
 
 /* paleta de cores interessantes
