@@ -26,18 +26,18 @@ export const busca = async (url: any, setDados: any, header: any) => {
     setDados(resposta.data);
 }
 
-export const buscaId =async (url:any, setDados: any, header: any) => {
+export const buscaId = async (url:any, setDados: any, header: any) => {
     const resposta = await api.get(url, header);
     setDados(resposta.data);
 }
 
 //precisa de um param extra, que sao os dados
-export const post =async (url:any, dados: any, setDados: any, header: any) => {
+export const post = async (url:any, dados: any, setDados: any, header: any) => {
     const resposta = await api.post(url,dados,header)
     setDados(resposta.data)    
 }
 
-export const put =async (url:any, dados: any, setDados: any, header: any) => {
+export const put = async (url:any, dados: any, setDados: any, header: any) => {
     const resposta = await api.put(url,dados,header)
     setDados(resposta.data)    
 }

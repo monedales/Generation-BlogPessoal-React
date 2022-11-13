@@ -9,20 +9,36 @@ import {
 } from "@material-ui/core";
 import { Box } from "@mui/material";
 import "./ListaPostagem.css";
-import useLocalStorage from "react-use-localstorage";
 import { useNavigate } from "react-router-dom";
 import Postagem from "../../../model/Postagem";
 import { busca } from "../../../service/Service";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../../store/tokens/tokensReducer";
+import { toast } from "react-toastify";
 
 function ListaPostagem() {
 	const [postagem, setPostagem] = useState<Postagem[]>([]);
-	const [token, setToken] = useLocalStorage("token");
+	
+	//hook useSelector que vai acessar o store, pegar o token e atribuir a essa constante
+    const token = useSelector<TokenState, TokenState["tokens"]>(
+        (state) => state.tokens
+    );
+	
 	let navigate = useNavigate();
 
 
 	useEffect(() => {
 		if (token == "") {
-			alert("Você precisa logar né queride!")
+			toast.error("Você precisa logar né queride!", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
 			navigate("/login")
 		}
 	}, [token])
@@ -75,7 +91,7 @@ function ListaPostagem() {
 											</Button>
 										</Box>
 									</Link>
-									<Link to={`/formularioPostagem/${post.id}`} className="text-decorator-none">
+									<Link to={`/deletarPostagem/${post.id}`} className="text-decorator-none">
 										<Box mx={1}>
 											<Button variant="contained" size="small" color="secondary">
 												deletar

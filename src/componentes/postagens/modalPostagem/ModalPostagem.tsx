@@ -1,25 +1,23 @@
+import React, { useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import React, {useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { transform } from 'typescript';
 import { Modal, Box, Button } from "@mui/material";
 import CadastroPostagem from '../cadastroPostagem/CadastroPostagem';
+import './ModalPostagem.css';
 
 
-function getModalStyle()
-{
+function getModalStyle() {
     const top = 50;
     const left = 50;
 
-    return
-    {
-        top: `${top}%`;
-        left: `${left}%`;
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
         transform: `translate(-${top}%, -${left}%)`
     }
 }
 
-const useStyles = makeStyles((theme: Theme) => 
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         paper: {
             position: 'absolute',
@@ -35,8 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
 function ModalPostagem()
 {
     const classes = useStyles();
-    const [modalStyle] = useState(getModalStyle)
-    const[open, setOpen] = React.useState(false)
+    const [modalStyle] = useState(getModalStyle); 
+    const[open, setOpen] = useState(false);
 
     const handleOpen = () => {
         setOpen(true);
@@ -48,27 +46,27 @@ function ModalPostagem()
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-            <Box display="flex" justifyContent="flex-end">
-                <CloseIcon />
+            <Box display="flex" justifyContent="flex-end" >
+                <CloseIcon onClick={handleClose}/>
             </Box>
             <CadastroPostagem />
         </div>
-    )
+    );
 
     return(
         <>
-            <Button onClick = {handleOpen} variant="contained" color='warning'>
+            <Button onClick = {handleOpen} variant="contained" className='btnModal'>
                 Nova Postagem
             </Button>
             <Modal 
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="simple-modal-title"
-            aria-describedby='simple-modal-description'>
-                {body}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby='simple-modal-description'>
+                    {body}
             </Modal>        
         </>
-    )
+    );
 }
 
 export default ModalPostagem;

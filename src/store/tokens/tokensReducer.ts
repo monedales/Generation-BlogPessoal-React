@@ -5,17 +5,18 @@ export interface TokenState
     tokens: string
 }
 
-const initialState = {
+const initialState = { //valor inicial vazio
     tokens: ''
 }
 
-export const tokensReducer = (state: TokenState = initialState, action: Action) => {
-    switch (action.type) //quando executar adiciona 
+//1 param recebe o state da aplicação e o 2 param é a alteração que vai acontecer nessa aplica
+export const tokensReducer = (state: TokenState = initialState, action: Action) => { //variavel vai ser do tipo da model toekstate e tem valor vazio
+    switch (action.type) //verificar o tipo da action - quando executar adiciona 
     {
-        case "ADD_TOKEN":
+        case "ADD_TOKEN": // se for desse tipo, o retorno vai ser o "tokens" recebendo o payload do actions, que é o token em si-preenchendo o tokens com o token pra autenticar a api
         {
             return {tokens: action.payload}
         }
-		default: return state //se nao tiver mais nada retorna ao estado
+		default: return state //se nao tiver mais nada retorna ao estado original(vazio)
     }
 }

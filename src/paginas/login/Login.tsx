@@ -2,13 +2,13 @@ import React, { ChangeEvent, useState, useEffect } from "react";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import useLocalStorage from "react-use-localstorage";
 import UsuarioLogin from "../../model/UsuarioLogin";
 import { getValue } from "@mui/system";
 import { login } from "../../service/Service";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { addToken } from "../../store/tokens/actions";
+import { toast } from "react-toastify";
 
 //useState gancho que deixa manipular os dados de um componente
 
@@ -29,8 +29,8 @@ function Login() {
     // Hooks que vão manipular o nosso Local Storage para gravar o Token
     // const [token, setToken] = useLocalStorage("token");
 
-    //método novo com redux
-    const dispatch = useDispatch()
+    //método novo com REDUX - 
+    const dispatch = useDispatch();
 
     const [token, setToken] = useState('');
 
@@ -46,9 +46,9 @@ function Login() {
 
     // Hook de efeito colateral, sempre executa uma função quando o que estiver no seu Array é alterado
     useEffect(()=>{
-        if (token != "") {
-            dispatch(addToken(token));
-            history('/home');
+        if (token != "") { //se o token nao está vazio, significa que já existe um usuário
+            dispatch(addToken(token)); //então o token do usuário é interceptado e armazenado pelo redux 
+            history('/home'); //e direciona para a tela home
         }  
     },[token])
 
@@ -59,9 +59,27 @@ function Login() {
 
         try {
             await login("/usuarios/logar", usuarioLogin, setToken);
-            alert("Usuário logado com sucesso!");
+            toast.success("Welcome to the underworld", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         } catch (error) {
-            alert("Dados de usuário incorretos!");
+            toast.error("Something's wrong", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }
 	}
 
@@ -84,7 +102,7 @@ function Login() {
                                     align="center"
                                     className="textos1"
                                 >
-                                    Entrar
+                                    Be the bullet hell!
                                 </Typography>
                                 <TextField
                                     onChange={(event: ChangeEvent<HTMLInputElement>) =>

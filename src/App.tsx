@@ -14,11 +14,14 @@ import DeletarTema from "./componentes/temas/deletarTema/DeletarTema";
 import DeletarPostagem from './componentes/postagens/deletarPostagem/DeletarPostagem';
 import store from './store/store';
 import { Provider } from "react-redux";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
 	return (
-		<Provider store={store}>
+		<Provider store={store}>   {/*todas as rotas podem acessar o store por causa do provider*/}
+			<ToastContainer />
 			<Router>
 				<Navbar />
 				<div style={{ minHeight: "100vh" }}>
