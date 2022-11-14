@@ -6,11 +6,15 @@ import Usuario from "../../model/Usuario";
 import { cadastroUsuario } from "../../service/Service";
 import './CadastroUsuario.css'
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { TokenState } from "../../store/tokens/tokensReducer";
 
 function CadastroUsuario() {
 
     let navigate = useNavigate();
     const [confirmarSenha, setConfirmarSenha] = useState<String>("")
+
+
     const [usuario, setUsuario] = useState<Usuario>(
         {
             id: 0,
@@ -45,24 +49,37 @@ function CadastroUsuario() {
 
         setUsuario({
             ...usuario,
-            [e.target.name]: e.target.value
-        })
-
+            [e.target.name]: e.target.value,
+        });
     }
+
     async function onSubmit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
-        if (confirmarSenha === usuario.senha) {
-            cadastroUsuario(`/usuarios/cadastrar`, usuario, setUserResult)
-            toast.success("Welcome to the underworld", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                theme: "colored",
-                progress: undefined,
-            });
+        if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
+            try {
+                await cadastroUsuario(`/usuarios/cadastrar`, usuario, setUserResult)
+                toast.success("Welcome to the underworld", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "colored",
+                    progress: undefined,
+                });
+            } catch (error) {
+                toast.error("Something's wrong", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: false,
+                    theme: "colored",
+                    progress: undefined,
+                });
+            }
         } else {
             toast.error("Something's wrong", {
                 position: "top-right",
@@ -74,6 +91,9 @@ function CadastroUsuario() {
                 theme: "colored",
                 progress: undefined,
             });
+
+            setUsuario({...usuario, senha: ""});
+            setConfirmarSenha("");
         }
     }
 
@@ -85,7 +105,7 @@ function CadastroUsuario() {
                     <form onSubmit={onSubmit}>
                         <Typography variant='h3' gutterBottom
                             component="h3"
-                            align="center" className='textos2'>Cadastrar</Typography>
+                            align="center" className='textos2'>Cadastre-se</Typography>
                         <TextField
                             value={usuario.nome}
                             onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -138,7 +158,7 @@ function CadastroUsuario() {
                                     Cancelar
                                 </Button>
                             </Link>
-                            <Link to="/home">
+                            <Link to="/login">
                                 <Button type="submit" variant="contained" color="primary"> {/*tirar o color e colocar classe pros botoes*/}
                                     Cadastrar
                                 </Button>
