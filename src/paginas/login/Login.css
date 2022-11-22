@@ -13,8 +13,7 @@
 {
     background-image: url(https://www.colunatech.com.br/wp-content/uploads/2022/07/reft.jpg);
     background-repeat: no-repeat;
-    width: 80vh;
-    min-height: 80vh;
+    min-height: 100vh;
     background-size:cover;
     background-position:center;
 }
@@ -31,3 +30,7 @@
     
 }
 
+.back
+{
+    background-color: #E4AFFF;
+}

@@ -2,3 +2,17 @@
 {
     text-decoration: none;
 }
+
+.btnAtualizar
+{
+    background-color: '#ffbd59' !important;
+}
+
+.postagens 
+{
+    width: 25vw;
+    min-height: 232px;
+    padding: 0;
+    margin: 0;  
+    word-wrap: break-word;
+}

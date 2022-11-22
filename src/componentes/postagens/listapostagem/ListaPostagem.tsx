@@ -36,7 +36,7 @@ function ListaPostagem() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
 			navigate("/login")
@@ -59,10 +59,13 @@ function ListaPostagem() {
 
 	return (
 		<>
-			{
-				postagem.map(post => (
+		<Box display="flex" flex="wrap">
+
+		
+			{postagem.map(post => (
 					<Box m={2}>
-						<Card variant="outlined">
+						<Card className="postagens"
+						variant="outlined">
 							<CardContent>
 								<Typography color="textSecondary" gutterBottom>
 									Postagens
@@ -76,24 +79,28 @@ function ListaPostagem() {
 								<Typography variant="body2" component="p">
 									{post.tema?.descricao}
 								</Typography>
+								<Typography variant="body2" component="p">
+									Unlocked by: {post.usuario?.nome}
+								</Typography>
 							</CardContent>
 
 							<CardActions>
 								<Box display="flex" justifyContent="center" mb={1.5}>
-									<Link to={`/formularioPostagem/${post.id}`} className="text-decorator-none">
+									<Link to={`/formularioPostagem/${post.id}`} className="text-decorator-none ">
 										<Box mx={1}>
 											<Button
 												variant="contained"
-												className="marginLeft"
+												className="btnAtualizar"
 												size="small"
-												color="primary">
+												
+												>
 												atualizar
 											</Button>
 										</Box>
 									</Link>
 									<Link to={`/deletarPostagem/${post.id}`} className="text-decorator-none">
 										<Box mx={1}>
-											<Button variant="contained" size="small" color="secondary">
+											<Button variant="contained" size="small"  style={{ color: '#a13e3e' }} >
 												deletar
 											</Button>
 										</Box>
@@ -104,6 +111,7 @@ function ListaPostagem() {
 					</Box>
 				))
 			}
+			</Box>
 		</>
 	);
 }

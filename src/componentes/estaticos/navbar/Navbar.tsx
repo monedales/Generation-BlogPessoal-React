@@ -70,7 +70,7 @@ function Navbar() {
 			closeOnClick: true,
 			pauseOnHover: false,
 			draggable: false,
-			theme: "colored",
+			theme: "light",
 			progress: undefined,
 		})
 		navigate("/login"); //e por isso redireciona para a tela de login

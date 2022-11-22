@@ -6,8 +6,7 @@ import Usuario from "../../model/Usuario";
 import { cadastroUsuario } from "../../service/Service";
 import './CadastroUsuario.css'
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { TokenState } from "../../store/tokens/tokensReducer";
+
 
 function CadastroUsuario() {
 
@@ -46,7 +45,6 @@ function CadastroUsuario() {
 
 
     function updateModel(e: ChangeEvent<HTMLInputElement>) {
-
         setUsuario({
             ...usuario,
             [e.target.name]: e.target.value,
@@ -59,13 +57,14 @@ function CadastroUsuario() {
             try {
                 await cadastroUsuario(`/usuarios/cadastrar`, usuario, setUserResult)
                 toast.success("Welcome to the underworld", {
+                    icon: "🧛🏻‍♀️",
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             } catch (error) {
@@ -76,7 +75,7 @@ function CadastroUsuario() {
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             }
@@ -88,11 +87,11 @@ function CadastroUsuario() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
 
-            setUsuario({...usuario, senha: ""});
+            setUsuario({ ...usuario, senha: "" });
             setConfirmarSenha("");
         }
     }
@@ -158,12 +157,9 @@ function CadastroUsuario() {
                                     Cancelar
                                 </Button>
                             </Link>
-                            <Link to="/login">
-                                <Button type="submit" variant="contained" color="primary"> {/*tirar o color e colocar classe pros botoes*/}
-                                    Cadastrar
-                                </Button>
-                            </Link>
-
+                            <Button type="submit" variant="contained" color="primary"> {/*tirar o color e colocar classe pros botoes*/}
+                                Cadastrar
+                            </Button>
                         </Box>
                     </form>
                 </Box>

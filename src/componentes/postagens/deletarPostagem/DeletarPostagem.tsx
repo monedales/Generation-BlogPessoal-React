@@ -30,7 +30,7 @@ function DeletarPostagem() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
 			navigate("/login")
@@ -59,13 +59,14 @@ function DeletarPostagem() {
 			}
 		});
 		toast.success("R.I.P.", {
+			icon: "⚰️",
 			position: "top-right",
 			autoClose: 2000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: false,
 			draggable: false,
-			theme: "colored",
+			theme: "light",
 			progress: undefined,
 		});
 	}

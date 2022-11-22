@@ -1,50 +1,33 @@
-/*.grow {
-    flex-grow: 1,
-  }
-  menuButton: {
-    marginRight: theme.spacing(2),
-  }
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  }
 
-  },
-
-  .sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
+  *{
+    font-family: 'Candara', sans-serif !important;
+    font-size: 17px;
+    color: #615a67;
   }
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    }
-  }*/
 
   .cursor
   {
     cursor: pointer;
-    color:#ebb5de !important;
+    color:#ffbd59!important;
     font-weight: bold !important;
   }
 
   .text-decorator-none
 {
     text-decoration: none;
-    /*hover: #a13e3e;*/
 }
 
 .barra
 {
-  background-color: #8a638b !important;
+  background-color: #a13e3e !important;
+  font-family: 'candara, sans-serif' !important;
 }
 
-/* paleta de cores interessantes
+/* 
+*****fontes 
+font-family: 'VT323', monospace !important;
+'Candara', 'Vampire Wars'
+*****paleta de cores interessantes
 #f9e1e0
 #ccb6b5
 #615a67

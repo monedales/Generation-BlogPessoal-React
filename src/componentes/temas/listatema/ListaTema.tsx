@@ -31,13 +31,14 @@ function ListaTema() {
 	useEffect(() => {
 		if (token == "") {
 			toast.error("Você precisa logar né queride!", {
+				icon: "🧛🏻‍♀️",
 				position: "top-right",
 				autoClose: 2000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
 				draggable: false,
-				theme: "colored",
+				theme: "light",
 				progress: undefined,
 			});
 			navigate("/login")
@@ -59,9 +60,12 @@ function ListaTema() {
 
 	return (
 		<>
+		<Box display="flex" flexWrap="wrap">
+
+		
 			{temas.map(tema => (
 				<Box m={2}>
-					<Card variant="outlined">
+					<Card className="postagens" variant="outlined">
 						<CardContent>
 							<Typography color="textSecondary" gutterBottom>
 								Tema
@@ -98,6 +102,7 @@ function ListaTema() {
 				</Box>
 			))
 			}
+			</Box>
 		</>
 	);
 }

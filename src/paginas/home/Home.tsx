@@ -27,7 +27,7 @@ function Home() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             })
             navigate("/login") //se nao existe token o history direciona para o login

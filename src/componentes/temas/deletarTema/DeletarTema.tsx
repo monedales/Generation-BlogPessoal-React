@@ -30,7 +30,7 @@ function DeletarTema() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
 			navigate("/login")
@@ -60,13 +60,14 @@ function DeletarTema() {
 			}
 		});
 		toast.success("R.I.P.", {
+			icon: "⚰️",
 			position: "top-right",
 			autoClose: 2000,
 			hideProgressBar: false,
 			closeOnClick: true,
 			pauseOnHover: false,
 			draggable: false,
-			theme: "colored",
+			theme: "light",
 			progress: undefined,
 		});
 	}
@@ -88,7 +89,7 @@ function DeletarTema() {
 					<CardActions>
 						<Box display="flex" justifyContent="start" ml={1.0} mb={2}>
 							<Box mx={2}>
-								<Button onClick={sim} variant="contained" className="marginLeft" size="large" color="primary">
+								<Button onClick={sim} variant="contained" className="marginLeft btnAtualizar" size="large">
 								Go to hell!
 								</Button>
 							</Box>

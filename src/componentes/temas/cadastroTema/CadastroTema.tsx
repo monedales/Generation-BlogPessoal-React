@@ -3,7 +3,6 @@ import { Button, Container, Typography, TextField } from "@material-ui/core";
 import Tema from '../../../model/Tema';
 import "./CadastroTema.css"
 import { useNavigate, useParams } from 'react-router-dom';
-import { findByTestId } from '@testing-library/react';
 import { buscaId, post, put } from './../../../service/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
@@ -34,7 +33,7 @@ function CadastroTema() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
 			navigate("/login")
@@ -67,23 +66,22 @@ function CadastroTema() {
 	async function onSubmit(event: ChangeEvent<HTMLFormElement>) {
 		event.preventDefault()
 		
-
 		if (id !== undefined) {
 			try {
-				console.log(tema)
 			await put(`/temas`, tema, setTema, {
 				headers: {
 					Authorization: token
 				}
 			})
 			toast.success("Arrasou!", {
+				icon: "🔥",
 				position: "top-right",
 				autoClose: 2000,
 				hideProgressBar: false,
 				closeOnClick: true,
 				pauseOnHover: false,
 				draggable: false,
-				theme: "colored",
+				theme: "light",
 				progress: undefined,
 			});
 			} catch (error) {
@@ -94,7 +92,7 @@ function CadastroTema() {
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
 			}
@@ -106,13 +104,14 @@ function CadastroTema() {
 					}
 				})
 				toast.success("Arrasou!", {
+					icon: "🔥",
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
 			} catch (error) {
@@ -123,7 +122,7 @@ function CadastroTema() {
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
 			}
@@ -144,7 +143,7 @@ function CadastroTema() {
 				</Typography>
 				{/*onchange fica de olho a qualquer alteração que o usuario fizer qnd digitar no  campo e aciona o updatedtema*/}
 				<TextField value={tema.descricao} onChange={(event: ChangeEvent<HTMLInputElement>) => updatedTema(event)}
-					id="descricao" label="descricao"
+					id="descricao" label="descrição"
 					variant="outlined" name="descricao" margin="normal" fullWidth />
 				<Button type="submit" variant="contained" color="primary">
 					Finalizar

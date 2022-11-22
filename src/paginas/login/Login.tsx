@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState, useEffect } from "react";
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import UsuarioLogin from "../../model/UsuarioLogin";
 import { getValue } from "@mui/system";
 import { login } from "../../service/Service";
@@ -9,12 +9,22 @@ import "./Login.css";
 import { useDispatch } from "react-redux";
 import { addToken } from "../../store/tokens/actions";
 import { toast } from "react-toastify";
+import { addId } from './../../store/tokens/actions';
 
 //useState gancho que deixa manipular os dados de um componente
 
 function Login() {
     // useState define como uma determinada variavel será inicializada quando o Componente for carregado em tela
     const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>({ // primeiro valor é pra acessar e o segundo é pra alterar/valores padrão que serão inicializados:
+        id: 0,
+        nome: "",
+        foto: "",
+        usuario: "",
+        senha: "",
+        token: "",
+    });
+
+    const [respUsuarioLogin, setRespUsuarioLogin] = useState<UsuarioLogin> ({
         id: 0,
         nome: "",
         foto: "",
@@ -44,6 +54,14 @@ function Login() {
         });
     }
 
+    useEffect(() => {
+        if(respUsuarioLogin.token !== "") {
+            dispatch(addToken(respUsuarioLogin.token))
+            dispatch(addId(respUsuarioLogin.id.toString()))
+            history("/home");
+        }
+    }, [respUsuarioLogin.token])
+
     // Hook de efeito colateral, sempre executa uma função quando o que estiver no seu Array é alterado
     useEffect(()=>{
         if (token != "") { //se o token nao está vazio, significa que já existe um usuário
@@ -58,30 +76,33 @@ function Login() {
         event.preventDefault(); //impedir que o botão atualize a tela
 
         try {
-            await login("/usuarios/logar", usuarioLogin, setToken);
+            await login("/usuarios/logar", usuarioLogin, setRespUsuarioLogin);
             toast.success("Welcome to the underworld", {
+                icon: "🧛🏻‍♀️",
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
         } catch (error) {
-            toast.error("Something's wrong", {
+            toast.error("You shall not pass!", {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
         }
 	}
+
+   
 
         return (
             <>

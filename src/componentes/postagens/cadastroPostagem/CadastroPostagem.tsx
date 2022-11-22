@@ -9,6 +9,7 @@ import "./CadastroPostagem.css"
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
 import { toast } from 'react-toastify';
+import Usuario from '../../../model/Usuario';
 
 
 function CadastroPostagem() {
@@ -34,10 +35,10 @@ function CadastroPostagem() {
                 closeOnClick: true,
                 pauseOnHover: false,
                 draggable: false,
-                theme: "colored",
+                theme: "light",
                 progress: undefined,
             });
-            navigate("/login") //se nao existe token o history direciona para o login
+            navigate("/login") //se nao existe token o navigate direciona para o login
         }
     }, [token])
 
@@ -51,14 +52,28 @@ function CadastroPostagem() {
         titulo: "",
         texto: "",
         data: "",
-        tema: null
+        tema: null,
+        usuario: null
+    })
+
+    const userId = useSelector<TokenState, TokenState['id']>(
+        (state) => state.id
+    )
+
+    const [usuario, setUsuario] = useState<Usuario>({
+        id: +userId,
+        nome: "",
+        foto: "",
+        usuario: "",
+        senha: ""
     })
 
 
     useEffect(() => {
         setPostagem({
             ...postagem,
-            tema: tema
+            tema: tema,
+            usuario: usuario
         })
     }, [tema])
 
@@ -112,13 +127,14 @@ function CadastroPostagem() {
                     }
                 })
                 toast.success("Arrasou!", {
+                    icon: "🔥",
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             } catch (error) {
@@ -129,7 +145,7 @@ function CadastroPostagem() {
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             }
@@ -141,13 +157,14 @@ function CadastroPostagem() {
                     }
                 })
                 toast.success("Arrasou!", {
+                    icon: "🔥",
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             } catch (error) {
@@ -158,7 +175,7 @@ function CadastroPostagem() {
                     closeOnClick: true,
                     pauseOnHover: false,
                     draggable: false,
-                    theme: "colored",
+                    theme: "light",
                     progress: undefined,
                 });
             }
@@ -176,8 +193,7 @@ function CadastroPostagem() {
                 <Typography variant='h3' color='textSecondary' component="h1" align="center">
                     Cadastra Aí!
                 </Typography>
-                <TextField value={postagem.titulo} onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)} id='titulo' label="titulo" variant='outlined' name='titulo' margin='normal' fullWidth />
-                <TextField value={postagem.texto} onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)} id='texto' label='texto' variant='outlined' name='texto' margin='normal' fullWidth />
+
 
                 <FormControl>
                     <InputLabel id='demo-simple-select-helper-label'>
@@ -198,10 +214,15 @@ function CadastroPostagem() {
                         }
                     </Select>
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type='submit' variant='contained' color='primary' disabled={tema.id === 0}>
-                        Werk!
-                    </Button>
+
                 </FormControl>
+                <TextField value={postagem.titulo} onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)} id='titulo' label="titulo" variant='outlined' name='titulo' margin='normal' fullWidth />
+                <TextField value={postagem.texto} onChange={(event: ChangeEvent<HTMLInputElement>) => updatedPostagem(event)} id='texto' label='texto' variant='outlined' name='texto' margin='normal' fullWidth />
+
+                <Button type='submit' variant='contained' color='primary' disabled={tema.id === 0}>
+                    Werk!
+                </Button>
+
             </form>
         </Container>
     )

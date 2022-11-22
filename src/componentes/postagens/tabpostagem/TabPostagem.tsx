@@ -28,10 +28,9 @@ function TabPostagem() {
                     <Typography
                         variant="h5"
                         gutterBottom
-                        color="textPrimary"
                         component="h5"
                         align="center"
-                        className="titulo"
+                        className="titulo2"
                     >
                         Sobre-nós
                     </Typography>
